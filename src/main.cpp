@@ -1,5 +1,5 @@
 //#include "../include/scanner.h"
-#include "../include/instruction.h"
+#include "../include/parser.h"
 #include <fstream>
 #include <sstream>
 
@@ -36,6 +36,30 @@ void test_only_instruction() {
 }
 
 int main(int argc, char** argv) {
-    test_only_instruction();
+    //test_only_instruction();
+
+    SVM* svm;
+    
+    std::cout << "Reading program from file " << argv[1] << std::endl;
+    std::ifstream t(argv[1]);
+    std::stringstream buffer;
+    buffer << t.rdbuf();
+
+    Scanner scanner(buffer.str());
+  
+    Parser parser(&scanner);
+    svm = parser.parse();
+
+    std::cout << "Program:" << std::endl;
+    svm->print();
+    std::cout << "----------------" << std::endl;
+
+    
+    std::cout << "Running ...." << std::endl;
+    svm->execute();
+    std::cout << "Finished" << std::endl;
+
+    svm->print_stack();
+    
     return 0;
 }

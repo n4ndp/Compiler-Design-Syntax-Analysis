@@ -10,7 +10,7 @@ private:
     std::unordered_map<std::string, Token::Type> reserved;
 
 public:
-    Scanner(const char*);
+    Scanner(const std::string&);
     Token* next_token();
     ~Scanner();
 
@@ -20,7 +20,7 @@ private:
     void start_lexeme();
     void incr_start_lexeme();
     std::string get_lexeme();
-    Token::Type check_reserved(const std::string& lexema);
+    Token::Type check_reserved(const std::string&);
 };
 
 char Scanner::next_char() {
@@ -39,7 +39,7 @@ Token::Type Scanner::check_reserved(const std::string& lexema) {
     return it == reserved.end() ? Token::ERR : it->second;
 }
 
-Scanner::Scanner(const char* input): input(input), first(0), current(0) {
+Scanner::Scanner(const std::string&  input): input(input), first(0), current(0) {
     reserved["push"] = Token::PUSH;
     reserved["jmpeq"] = Token::JMPEQ;
     reserved["jmpgt"] = Token::JMPGT;

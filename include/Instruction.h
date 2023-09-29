@@ -40,10 +40,8 @@ class SVM {
 private:
     int registers[8];
     std::stack<int> opstack;
-
     std::vector<Instruction*> instructions;
     std::unordered_map<std::string, int> labels;
-
     int pc;
 
 private:

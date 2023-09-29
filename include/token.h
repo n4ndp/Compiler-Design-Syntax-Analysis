@@ -60,6 +60,7 @@ Instruction::IType Token::tokenToIType(Token::Type token_type) {
         std::cout << "Error: Unknown Keyword type" << std::endl;
         exit(0);
     }
+    
     return itype;
 }
 
