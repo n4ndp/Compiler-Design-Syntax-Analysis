@@ -35,7 +35,6 @@ Instruction::Instruction(std::string label, IType itype, int argument): label(la
 Instruction::Instruction(std::string label, IType itype, std::string argument): label(label), itype(itype), hasarg(true), jmp_label(argument) {}
 
 
-
 class SVM {
 private:
     int registers[8];
@@ -157,7 +156,7 @@ void SVM::execute(Instruction* instruction) {
                 opstack.push(top); 
                 opstack.push(next); 
                 break;
-            default: perror("Programming Error 4");
+            default: this->perror("Programming Error 4");
         }
         pc++;
     } else if (itype == Instruction::IGOTO) {
@@ -239,7 +238,7 @@ void SVM::print() {
 }
 
 int SVM::top() {
-    if (opstack.empty()) perror("Can't get top of an empty stack");
+    if (opstack.empty()) this->perror("Can't get top of an empty stack");
     return opstack.top();
 }
 
