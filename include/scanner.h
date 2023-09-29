@@ -12,7 +12,6 @@ private:
 public:
     Scanner(const std::string&);
     Token* next_token();
-    ~Scanner();
 
 private:
     char next_char();
@@ -60,14 +59,16 @@ Scanner::Scanner(const std::string&  input): input(input), first(0), current(0) 
     reserved["print"] = Token::PRINT;
 }
 
-Scanner::~Scanner() { }
-
 Token* Scanner::next_token() {
     Token* token;
     char c = next_char();
 
     while (c == ' ') c = this->next_char();
     if (c == '\0') return new Token(Token::END);
+    if (c == '%') {
+        while (c != '\n' && c != '\0') c = this->next_char();
+        if (c == '\n') return this->next_token();
+    }
 
     this->start_lexeme();
     state = 0;
@@ -88,7 +89,6 @@ Token* Scanner::next_token() {
                 }
                 else {
                     this->roll_back();
-
                     std::string lexeme = this->get_lexeme();
                     Token::Type token_type = this->check_reserved(lexeme);
 
@@ -97,20 +97,17 @@ Token* Scanner::next_token() {
                 }
             case 2:
                 this->start_lexeme();
-
                 while (isdigit(c)) c = this->next_char();
                 this->roll_back();
 
                 return new Token(Token::NUM, this->get_lexeme());
             case 3:
-                token = new Token(Token::LABEL, this->get_lexeme());
-
-                return token;
+                return new Token(Token::LABEL, this->get_lexeme());
             case 4:
                 while (c == '\n') c = this->next_char();
                 this->roll_back();
 
-                return new Token(Token::EOL);   
+                return new Token(Token::EOL);
             default:
                 std::cout << "Programming Error ... quitting" << std::endl;
                 exit(0);
