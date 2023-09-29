@@ -1,14 +1,20 @@
-push 3
+push 6
+% Nombre, apellido
 store 5
 push 0
 LENTRY: load 5
 push 0
+
 jmple LEND
 load 5
-add 0
+add
 load 5
 push 1
 sub 
 store 5
 goto LENTRY
 LEND: skip 
+
+
+
+

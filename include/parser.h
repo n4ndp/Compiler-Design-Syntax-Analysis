@@ -127,9 +127,7 @@ SVM* Parser::parse() {
         sl.push_back(instr);
     }
 
-    if (current->type != Token::END) {
-        std::cout << "Error: Expected end of input, found: " << *current << std::endl;
-    }
+    if (current->type != Token::END) { std::cout << "Error: Expected end of input" << std::endl; }
     if (current) delete current;
 
     return new SVM(sl);

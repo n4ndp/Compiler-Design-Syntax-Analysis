@@ -102,7 +102,11 @@ Token* Scanner::next_token() {
 
                 return new Token(Token::NUM, this->get_lexeme());
             case 3:
-                return new Token(Token::LABEL, this->get_lexeme());
+                this->roll_back();
+                token = new Token(Token::LABEL, this->get_lexeme());
+                c = this->next_char();
+
+                return token;
             case 4:
                 while (c == '\n') c = this->next_char();
                 this->roll_back();
