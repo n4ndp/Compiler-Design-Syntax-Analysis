@@ -66,18 +66,28 @@ Instruction* Parser::parseInstruction() {
     } else if (this->match(Token::PUSH) || this->match(Token::STORE) || this->match(Token::LOAD)) {
         type_instr = 1;
         token_type = previous->type;
-        argument_int = std::stoi(current->lexeme);
-        this->match(Token::NUM);
     } else if (this->match(Token::GOTO) || this->match(Token::JMPEQ) ||
                this->match(Token::JMPGT) || this->match(Token::JMPGE) ||
                this->match(Token::JMPLT) || this->match(Token::JMPLE)) {
         type_instr = 2;
         token_type = previous->type;
-        jmp_label = current->lexeme;
-        this->match(Token::ID);
     } else {
-        std::cout << "Error: couldn't find a match for " << current << std::endl;
+        std::cout << "Error: couldn't find a match for " << *current << std::endl;
         exit(0);
+    }
+
+    if (type_instr == 1) {
+        if (!this->match(Token::NUM)) {
+            std::cout << "Error: Expected number" << std::endl;
+            exit(0);
+        }
+        argument_int = std::stoi(previous->lexeme);
+    } else if (type_instr == 2) {
+        if (!this->match(Token::ID)) {
+            std::cout << "Error: Expected id" << std::endl;
+            exit(0);
+        }
+        jmp_label = previous->lexeme;
     }
 
     if (!this->match(Token::EOL)) {
@@ -92,7 +102,8 @@ Instruction* Parser::parseInstruction() {
     } else if (type_instr == 2) {
         instr = new Instruction(label, Token::tokenToIType(token_type), jmp_label);
     } else {
-        std::cout << "no deberia llegar aqui";
+        std::cout << "Error: Unable to recognize the instruction type" << std::endl;
+        exit(0);
     }
 
     return instr;
@@ -112,12 +123,12 @@ SVM* Parser::parse() {
     std::list<Instruction*> sl;
 
     while (current->type != Token::END) {
-        instr = parseInstruction();
+        instr = this->parseInstruction();
         sl.push_back(instr);
     }
 
     if (current->type != Token::END) {
-        std::cout << "Esperaba fin-de-input, se encontro " << current << std::endl;
+        std::cout << "Error: Expected end of input, found: " << *current << std::endl;
     }
     if (current) delete current;
 
