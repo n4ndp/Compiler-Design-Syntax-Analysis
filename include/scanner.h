@@ -33,8 +33,8 @@ void Scanner::start_lexeme() { first = current - 1; }
 void Scanner::incr_start_lexeme() { first++; }
 std::string Scanner::get_lexeme() { return input.substr(first, current - first); }
 
-Token::Type Scanner::check_reserved(const std::string& lexema) { 
-    std::unordered_map<std::string, Token::Type>::const_iterator it = reserved.find(lexema);
+Token::Type Scanner::check_reserved(const std::string& lexeme) { 
+    std::unordered_map<std::string, Token::Type>::const_iterator it = reserved.find(lexeme);
     return it == reserved.end() ? Token::ERR : it->second;
 }
 

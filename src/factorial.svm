@@ -1,7 +1,26 @@
-% Nombre, apellido
-% Nombre, apellido
-% Nombre, apellido
-push 6 
+% Carlos Alonso Flores Panduro
+% Fernando Adriano Choqque Mejia
 % codigo que calcula el factorial del valor arriba de la pila
 % en este caso, 6!
-
+% 1|2|3|4|5|6
+push 6
+dup
+push 1
+sub
+dup
+push 1
+sub
+dup
+push 1
+sub
+dup
+push 1
+sub
+dup
+push 1
+sub
+mul
+mul
+mul
+mul
+mul

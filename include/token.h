@@ -38,27 +38,27 @@ std::ostream& operator<<(std::ostream& stream, const Token& token) {
 Instruction::IType Token::tokenToIType(Token::Type token_type) {
     Instruction::IType itype;
     switch (token_type) {
-    case (Token::PUSH): itype = Instruction::IPUSH; break;
-    case (Token::POP): itype = Instruction::IPOP; break;
-    case (Token::DUP): itype = Instruction::IDUP; break;
-    case (Token::SWAP): itype = Instruction::ISWAP; break;
-    case (Token::ADD): itype = Instruction::IADD; break;
-    case (Token::SUB): itype = Instruction::ISUB; break;
-    case (Token::MUL): itype = Instruction::IMUL; break;
-    case (Token::DIV): itype = Instruction::IDIV; break;
-    case (Token::GOTO): itype = Instruction::IGOTO; break;
-    case (Token::JMPEQ): itype = Instruction::IJMPEQ; break;
-    case (Token::JMPGT): itype = Instruction::IJMPGT; break;
-    case (Token::JMPGE): itype = Instruction::IJMPGE; break;
-    case (Token::JMPLT): itype = Instruction::IJMPLT; break;
-    case (Token::JMPLE): itype = Instruction::IJMPLE; break;
-    case (Token::SKIP): itype = Instruction::ISKIP; break;
-    case (Token::STORE): itype = Instruction::ISTORE; break;
-    case (Token::LOAD): itype = Instruction::ILOAD; break;
-    case (Token::PRINT): itype = Instruction::IPRINT; break;
-    default:
-        std::cout << "Error: Unknown Keyword type" << std::endl;
-        exit(0);
+        case (Token::PUSH): itype = Instruction::IPUSH; break;
+        case (Token::POP): itype = Instruction::IPOP; break;
+        case (Token::DUP): itype = Instruction::IDUP; break;
+        case (Token::SWAP): itype = Instruction::ISWAP; break;
+        case (Token::ADD): itype = Instruction::IADD; break;
+        case (Token::SUB): itype = Instruction::ISUB; break;
+        case (Token::MUL): itype = Instruction::IMUL; break;
+        case (Token::DIV): itype = Instruction::IDIV; break;
+        case (Token::GOTO): itype = Instruction::IGOTO; break;
+        case (Token::JMPEQ): itype = Instruction::IJMPEQ; break;
+        case (Token::JMPGT): itype = Instruction::IJMPGT; break;
+        case (Token::JMPGE): itype = Instruction::IJMPGE; break;
+        case (Token::JMPLT): itype = Instruction::IJMPLT; break;
+        case (Token::JMPLE): itype = Instruction::IJMPLE; break;
+        case (Token::SKIP): itype = Instruction::ISKIP; break;
+        case (Token::STORE): itype = Instruction::ISTORE; break;
+        case (Token::LOAD): itype = Instruction::ILOAD; break;
+        case (Token::PRINT): itype = Instruction::IPRINT; break;
+        default:
+            std::cout << "Error: Unknown Keyword type" << std::endl;
+            exit(0);
     }
     
     return itype;

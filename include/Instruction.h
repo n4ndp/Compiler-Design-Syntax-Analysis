@@ -44,7 +44,7 @@ private:
     int pc;
 
 private:
-    void perror(std::string);
+    void perror(const std::string&);
     void execute(Instruction*);
     void register_write(int, int);
     int register_read(int);
@@ -57,7 +57,7 @@ public:
     int top();
 };
 
-void SVM::perror(std::string msg) {
+void SVM::perror(const std::string& msg) {
     std::cout << "error: " << msg << std::endl;
     exit(0);
 }
