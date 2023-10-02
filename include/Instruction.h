@@ -21,18 +21,18 @@ struct Instruction {
     std::string label, jmp_label;
     int argument_int;
 
-    Instruction(std::string, IType);
-    Instruction(std::string, IType, int);
-    Instruction(std::string, IType, std::string);
+    Instruction(const std::string&, IType);
+    Instruction(const std::string&, IType, int);
+    Instruction(const std::string&, IType, const std::string&);
 };
 
 const char* Instruction::snames[18] = { "push", "pop", "dup", "swap", "add", "sub", "mult", "div", 
                                         "goto", "jmpeq", "jmpgt", "jmpge", "jmplt", "jmple", "skip", 
                                         "store", "load", "print" };
 
-Instruction::Instruction(std::string label, IType itype): label(label), itype(itype), hasarg(false) {}
-Instruction::Instruction(std::string label, IType itype, int argument): label(label), itype(itype), hasarg(true), argument_int(argument) { jmp_label = ""; }
-Instruction::Instruction(std::string label, IType itype, std::string argument): label(label), itype(itype), hasarg(true), jmp_label(argument) {}
+Instruction::Instruction(const std::string& label, IType itype): label(label), itype(itype), hasarg(false) {}
+Instruction::Instruction(const std::string& label, IType itype, int argument): label(label), itype(itype), hasarg(true), argument_int(argument) { jmp_label = ""; }
+Instruction::Instruction(const std::string& label, IType itype, const std::string& argument): label(label), itype(itype), hasarg(true), jmp_label(argument) {}
 
 
 class SVM {
