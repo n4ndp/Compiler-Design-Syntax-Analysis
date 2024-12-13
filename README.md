@@ -1,10 +1,10 @@
 # **Compiler Design | `Syntax Analysis`**
 
-Design and implementation of a syntactic analyzer (`parser`) for the SM (Stack Machine Language) defined in the first section. Syntax analysis is a crucial part of the compilation process that occurs after lexical analysis. At this stage, the grammatical structure and syntax of the source code are verified to ensure compliance with the rules defined in the language grammar.
+Diseño e implementación de un analizador sintáctico (`parser`) para el lenguaje SM (Lenguaje de Máquina de Pila). El análisis sintáctico es una parte crucial del proceso de compilación que ocurre después del análisis léxico. En esta etapa, se verifica la estructura gramatical y sintáctica del código fuente para asegurar el cumplimiento de las reglas definidas en la gramática del lenguaje.
 
-## **SM (Stack Machine Language) Grammar**
+## **SM (Stack Machine Language)**
 
-The following grammar outlines the basic structure of instructions in the SM language, including the possibility of labels, jump instructions, and unary operations.
+La siguiente gramática define la estructura básica de las instrucciones del lenguaje SM, incluyendo la posibilidad de etiquetas, instrucciones de salto y operaciones unarias.
 
 ```plaintext
 <program>       ::= <instruction>+
@@ -14,7 +14,7 @@ The following grammar outlines the basic structure of instructions in the SM lan
 <jmpinstr>      ::= jmpeq | jmpgt | jmpge | jmplt | jmple | goto
 ```
 
-The lexical specification defines rules to recognize tokens and lexemes in the SM source code. Here are the regular expressions used:
+La especificación léxica establece las reglas para identificar los tokens y lexemas presentes en el código fuente del lenguaje SM. A continuación, se presentan las expresiones regulares utilizadas:
 
 ```plaintext
 digit               ::= [0-9]
@@ -28,11 +28,11 @@ character           ::= [a-zA-Z]
 <ws>                ::= (‘ ‘ | ‘\t’)+
 ```
 
-According to these lexical rules, lexical units like `<id>`, `<num>`, `<eol>`, and all reserved words become tokens. However, the `<ws>` pattern, representing whitespace, does not generate tokens and is ignored. Token names are written in uppercase and match the corresponding lexical units.
+De acuerdo con estas reglas léxicas, las unidades léxicas como `<id>`, `<num>`, `<eol>` y todas las palabras reservadas se convierten en *tokens*. Sin embargo, el patrón `<ws>`, que representa los espacios en blanco, no genera tokens y se ignora. Los nombres de los tokens se escriben en mayúsculas y coinciden con las unidades léxicas correspondientes.
 
-## **Example input and output**
+## **Ejemplo de entrada y salida**
 
-**input**: example0.svm
+**Entrada**: `example0.svm`
 
 ```plaintext
 pop
@@ -41,15 +41,15 @@ add
 
 ```
 
-**output**:
+**Salida**:
 
 ```plaintext
-Reading program from file example0.svm
-Program:
+Leyendo el programa desde el archivo example0.svm
+Programa:
 pop 
 add 
 add 
 ----------------
-Running ....
-error: Can't pop from an empty stack
+Ejecutando....
+error: No se puede hacer pop en una pila vacía
 ```
